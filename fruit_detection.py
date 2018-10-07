@@ -69,7 +69,7 @@ def process_frame(frame):
 
     gray = cv2.cvtColor(res, cv2.COLOR_BGR2GRAY)
 
-    blur = cv2.GaussianBlur(gray, (5, 5), 0)
+    gray = erode(dilate((gray)))
 
     ret, thresh = cv2.threshold(gray,0,255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
     im2, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
